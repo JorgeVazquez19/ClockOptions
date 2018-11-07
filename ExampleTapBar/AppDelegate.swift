@@ -1,4 +1,4 @@
-//
+	//
 //  AppDelegate.swift
 //  ExampleTapBar
 //
@@ -15,7 +15,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window{
+            window.tintColor = ColorStyle.navigationBarTintColor()
+           
+            UITabBar.appearance().tintColor = UIColor.orange
+            Style.customize()
+            let clockVC = ChatsViewController()
+            let alarmVC = SettingsViewController()
+            let bedtimeVC = ContactsViewController()
+            let stopwatchVC = FavoritesViewController()
+            let timerVC = TimerViewController()
+            let tabController = UITabBarController()
+            
+            let clockNavController = UINavigationController(rootViewController: clockVC)
+            let alarmNavController = UINavigationController(rootViewController: alarmVC)
+            let bedtimeNavController = UINavigationController(rootViewController: bedtimeVC)
+            let stopwatchNavController = UINavigationController(rootViewController: stopwatchVC)
+            let timerNavController = UINavigationController(rootViewController: timerVC)
+            
+            
+            tabController.tabBar.isTranslucent = true
+            tabController.viewControllers = [clockNavController, alarmNavController, bedtimeNavController, stopwatchNavController, timerNavController]
+            
+            window.rootViewController = tabController
+            window.makeKeyAndVisible()
+        }
         return true
     }
 
